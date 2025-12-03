@@ -58,6 +58,20 @@
             opacity: 0.8;
         }
 
+        .login-btn {
+            background: white;
+            color: #1e3c72;
+            padding: 0.5rem 1.5rem;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+
+        .login-btn:hover {
+            transform: scale(1.05);
+        }
+
         .hero {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
@@ -198,29 +212,172 @@
             border-left: 4px solid #fff;
         }
 
-        .cta-section {
+        /* Contact Form Styles */
+        .contact-form-section {
+            background: white;
+            padding: 3rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #1e3c72;
+            font-weight: 600;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 0.8rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .submit-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            width: 100%;
+            transition: all 0.3s;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+            animation: fadeIn 0.3s;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .modal-content {
+            background: white;
+            margin: 10% auto;
+            padding: 2rem;
+            border-radius: 15px;
+            max-width: 400px;
+            position: relative;
+            animation: slideDown 0.3s;
+        }
+
+        @keyframes slideDown {
+            from {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .close {
+            position: absolute;
+            right: 1.5rem;
+            top: 1rem;
+            font-size: 2rem;
+            font-weight: bold;
+            color: #999;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .close:hover {
+            color: #333;
+        }
+
+        .auth-form {
+            margin-top: 2rem;
+        }
+
+        .auth-input {
+            width: 100%;
+            padding: 0.8rem;
+            margin-bottom: 1rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 1rem;
+        }
+
+        .auth-btn {
+            width: 100%;
+            padding: 0.8rem;
             background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
             color: white;
-            padding: 4rem 2rem;
-            text-align: center;
-            border-radius: 15px;
-        }
-
-        .cta-button {
-            display: inline-block;
-            background: white;
-            color: #1e3c72;
-            padding: 1rem 2rem;
-            border-radius: 50px;
-            text-decoration: none;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
             font-weight: bold;
-            margin-top: 1rem;
-            transition: all 0.3s ease;
+            cursor: pointer;
+            transition: all 0.3s;
         }
 
-        .cta-button:hover {
-            transform: scale(1.05);
-            box-shadow: 0 5px 20px rgba(255,255,255,0.3);
+        .auth-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(30, 60, 114, 0.3);
+        }
+
+        .auth-message {
+            margin-top: 1rem;
+            padding: 0.8rem;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .success {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .error {
+            background: #f8d7da;
+            color: #721c24;
+        }
+
+        .protected-content {
+            display: none;
         }
 
         footer {
@@ -237,10 +394,15 @@
 
             .nav-links {
                 gap: 1rem;
+                font-size: 0.9rem;
             }
 
             .section-title {
                 font-size: 2rem;
+            }
+
+            .contact-form-section {
+                padding: 2rem 1.5rem;
             }
         }
     </style>
@@ -255,6 +417,7 @@
                 <li><a href="#products">Products</a></li>
                 <li><a href="#founder">Founder</a></li>
                 <li><a href="#contact">Contact</a></li>
+                <li><a href="#" class="login-btn" onclick="openLoginModal()">Login</a></li>
             </ul>
         </nav>
     </header>
@@ -338,18 +501,180 @@
     </section>
 
     <div class="container">
-        <section id="contact" class="cta-section">
-            <h2>Partner With Us</h2>
-            <p style="font-size: 1.2rem; margin-top: 1rem;">
-                Join us in our mission to provide quality products and empower communities across South Africa.
-            </p>
-            <a href="#" class="cta-button">Get In Touch</a>
+        <section id="contact" class="section">
+            <h2 class="section-title">Contact Us</h2>
+            <div class="contact-form-section">
+                <h3 style="color: #1e3c72; margin-bottom: 1.5rem;">Get in Touch</h3>
+                <form id="contactForm" onsubmit="sendWhatsApp(event)">
+                    <div class="form-group">
+                        <label for="name">Full Name *</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email Address *</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone Number *</label>
+                        <input type="tel" id="phone" name="phone" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="product">Product Interest</label>
+                        <select id="product" name="product">
+                            <option value="">Select a product</option>
+                            <option value="Cleaning Products">Cleaning Products</option>
+                            <option value="Table Eggs">Table Eggs</option>
+                            <option value="Toilet Paper">Toilet Paper</option>
+                            <option value="Internet Café">Internet Café</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message *</label>
+                        <textarea id="message" name="message" required></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">Send via WhatsApp</button>
+                </form>
+            </div>
         </section>
+    </div>
+
+    <!-- Login Modal -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeLoginModal()">&times;</span>
+            <h2 style="color: #1e3c72;">Secure Login</h2>
+            <div id="loginStep">
+                <form class="auth-form" onsubmit="requestOTP(event)">
+                    <input type="email" id="loginEmail" class="auth-input" placeholder="Enter your email" required>
+                    <button type="submit" class="auth-btn">Send OTP</button>
+                </form>
+            </div>
+            <div id="otpStep" style="display: none;">
+                <p style="margin: 1rem 0; color: #666;">Enter the 6-digit code sent to your email</p>
+                <form class="auth-form" onsubmit="verifyOTP(event)">
+                    <input type="text" id="otpCode" class="auth-input" placeholder="Enter 6-digit OTP" maxlength="6" pattern="[0-9]{6}" required>
+                    <button type="submit" class="auth-btn">Verify & Login</button>
+                </form>
+                <p style="margin-top: 1rem; text-align: center; color: #666; font-size: 0.9rem;">
+                    Didn't receive code? <a href="#" onclick="requestOTP(event); return false;" style="color: #667eea;">Resend OTP</a>
+                </p>
+            </div>
+            <div id="authMessage"></div>
+        </div>
     </div>
 
     <footer>
         <p>&copy; 2025 Zhaka Enterprise. All rights reserved.</p>
         <p>Embalenhle, South Africa | Est. October 29, 2025</p>
+        <p>Contact: +27 71 261 3615</p>
     </footer>
+
+    <script>
+        // WhatsApp Form Submission
+        function sendWhatsApp(event) {
+            event.preventDefault();
+            
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+            const product = document.getElementById('product').value;
+            const message = document.getElementById('message').value;
+            
+            // Format the message for WhatsApp
+            const whatsappMessage = `*New Contact Form Submission*%0A%0A` +
+                `*Name:* ${encodeURIComponent(name)}%0A` +
+                `*Email:* ${encodeURIComponent(email)}%0A` +
+                `*Phone:* ${encodeURIComponent(phone)}%0A` +
+                `*Product Interest:* ${encodeURIComponent(product || 'Not specified')}%0A` +
+                `*Message:* ${encodeURIComponent(message)}`;
+            
+            // WhatsApp number (remove + and spaces)
+            const whatsappNumber = '27712613615';
+            
+            // Open WhatsApp with pre-filled message
+            window.open(`https://wa.me/${whatsappNumber}?text=${whatsappMessage}`, '_blank');
+            
+            // Reset form
+            document.getElementById('contactForm').reset();
+            alert('Redirecting to WhatsApp...');
+        }
+
+        // 2FA Authentication System
+        let generatedOTP = '';
+        let userEmail = '';
+
+        function openLoginModal() {
+            document.getElementById('loginModal').style.display = 'block';
+        }
+
+        function closeLoginModal() {
+            document.getElementById('loginModal').style.display = 'none';
+            document.getElementById('loginStep').style.display = 'block';
+            document.getElementById('otpStep').style.display = 'none';
+            document.getElementById('authMessage').innerHTML = '';
+        }
+
+        function requestOTP(event) {
+            event.preventDefault();
+            
+            userEmail = document.getElementById('loginEmail').value;
+            
+            // Generate 6-digit OTP
+            generatedOTP = Math.floor(100000 + Math.random() * 900000).toString();
+            
+            // In production, you would send this OTP via email API
+            console.log('Generated OTP:', generatedOTP);
+            
+            // Show OTP in alert for demo purposes (remove in production)
+            alert(`Demo Mode: Your OTP is ${generatedOTP}\n\nIn production, this would be sent to ${userEmail}`);
+            
+            // Show OTP input step
+            document.getElementById('loginStep').style.display = 'none';
+            document.getElementById('otpStep').style.display = 'block';
+            
+            showMessage('OTP sent to ' + userEmail, 'success');
+        }
+
+        function verifyOTP(event) {
+            event.preventDefault();
+            
+            const enteredOTP = document.getElementById('otpCode').value;
+            
+            if (enteredOTP === generatedOTP) {
+                showMessage('Login successful! Welcome back.', 'success');
+                
+                setTimeout(() => {
+                    closeLoginModal();
+                    // You can unlock protected content here
+                    unlockProtectedContent();
+                }, 1500);
+            } else {
+                showMessage('Invalid OTP. Please try again.', 'error');
+                document.getElementById('otpCode').value = '';
+            }
+        }
+
+        function showMessage(message, type) {
+            const messageDiv = document.getElementById('authMessage');
+            messageDiv.innerHTML = `<div class="auth-message ${type}">${message}</div>`;
+        }
+
+        function unlockProtectedContent() {
+            // Add logic to show protected content after successful login
+            const protectedElements = document.querySelectorAll('.protected-content');
+            protectedElements.forEach(el => el.style.display = 'block');
+            
+            alert('You are now logged in!');
+        }
+
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            const modal = document.getElementById('loginModal');
+            if (event.target === modal) {
+                closeLoginModal();
+            }
+        }
+    </script>
 </body>
 </html>
