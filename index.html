@@ -1,17 +1,355 @@
-# 1. Create index.html file (copy the HTML code from the artifact and save it)
-# You can use notepad:
-notepad index.html
-# Then paste the HTML code and save
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zhaka Enterprise - Quality Products & Community Empowerment</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-# 2. Add the file to git
-git add index.html
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
 
-# 3. Commit the file
-git commit -m "Add Zhaka Enterprise website"
+        .header {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
 
-# 4. Remove old remote and add new one
-git remote remove origin
-git remote add origin https://github.com/Nodino5/zhaka-enterprise.git
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
 
-# 5. Push to GitHub
-git push -u origin main
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            transition: opacity 0.3s;
+        }
+
+        .nav-links a:hover {
+            opacity: 0.8;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 120px 2rem 80px;
+            text-align: center;
+            margin-top: 60px;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            max-width: 800px;
+            margin: 0 auto;
+            opacity: 0.95;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        .section {
+            margin-bottom: 4rem;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            color: #1e3c72;
+            text-align: center;
+        }
+
+        .mission-vision {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .card {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card h3 {
+            color: #667eea;
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .product-card {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            padding: 2rem;
+            border-radius: 10px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .product-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .product-card h4 {
+            color: #1e3c72;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .founder-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 4rem 2rem;
+            border-radius: 15px;
+            margin: 3rem 0;
+        }
+
+        .founder-content {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .founder-content h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .founder-content h3 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            text-align: center;
+            opacity: 0.9;
+        }
+
+        .goals-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .goal-item {
+            background: rgba(255,255,255,0.1);
+            padding: 1.5rem;
+            border-radius: 10px;
+            border-left: 4px solid #fff;
+        }
+
+        .cta-section {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            padding: 4rem 2rem;
+            text-align: center;
+            border-radius: 15px;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: white;
+            color: #1e3c72;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .cta-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 20px rgba(255,255,255,0.3);
+        }
+
+        footer {
+            background: #1a1a1a;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .nav-links {
+                gap: 1rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <nav class="nav-container">
+            <div class="logo">Zhaka Enterprise</div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#products">Products</a></li>
+                <li><a href="#founder">Founder</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="home" class="hero">
+        <h1>Welcome to Zhaka Enterprise</h1>
+        <p>Quality Products & Community Empowerment in Embalenhle, South Africa</p>
+    </section>
+
+    <div class="container">
+        <section id="about" class="section">
+            <h2 class="section-title">Our Mission & Vision</h2>
+            <div class="mission-vision">
+                <div class="card">
+                    <h3>Vision</h3>
+                    <p>To become a trusted leader in the Toilet Paper, Cleaning Products and Egg Supply industry, known for quality, sustainability, and community empowerment.</p>
+                </div>
+                <div class="card">
+                    <h3>Mission</h3>
+                    <p>Our mission is to support food security and economic growth by providing superior products and services. We aim to empower local customers and entrepreneurs while adhering to ethical practices.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="products" class="section">
+            <h2 class="section-title">Our Products</h2>
+            <div class="products-grid">
+                <div class="product-card">
+                    <h4>Cleaning Products</h4>
+                    <p>Harmless chemicals for skin, ensuring safety and effectiveness for all your cleaning needs.</p>
+                </div>
+                <div class="product-card">
+                    <h4>Table Eggs</h4>
+                    <p>Fresh and farm-raised eggs for direct consumption or commercial resale.</p>
+                </div>
+                <div class="product-card">
+                    <h4>Toilet Paper</h4>
+                    <p>Available in 18s, 24s, and 48s packs to suit various customer needs.</p>
+                </div>
+                <div class="product-card">
+                    <h4>Internet Café</h4>
+                    <p>Providing access to technology and digital services for the community.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2 class="section-title">Our Goals</h2>
+            <div class="goals-list">
+                <div class="goal-item">
+                    <h4>📈 Expand Production</h4>
+                    <p>Increase capacity to meet growing demand</p>
+                </div>
+                <div class="goal-item">
+                    <h4>🤝 Build Partnerships</h4>
+                    <p>Establish connections with local shops and businesses</p>
+                </div>
+                <div class="goal-item">
+                    <h4>🌱 Eco-Friendly Practices</h4>
+                    <p>Reduce environmental impact through sustainable methods</p>
+                </div>
+                <div class="goal-item">
+                    <h4>👥 Youth Training</h4>
+                    <p>Provide opportunities for aspiring entrepreneurs</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <section id="founder" class="founder-section">
+        <div class="founder-content">
+            <h2>Meet Our Founder</h2>
+            <h3>Sandile Xhaka</h3>
+            <p style="font-size: 1.1rem; line-height: 1.8;">
+                Sandile Xhaka is the visionary founder of Zhaka Enterprise, an innovative and community-driven business based in Embalenhle, South Africa. With a deep passion for business and a commitment to empowering local communities, Sandile established Zhaka Enterprise on 29 October 2025 to address the growing demand for quality products while creating opportunities for economic growth.
+            </p>
+            <p style="font-size: 1.1rem; line-height: 1.8; margin-top: 1.5rem;">
+                Sandile's entrepreneurial spirit and dedication to excellence have been the driving forces behind the success of Zhaka Enterprise. With hands-on experience and a strong understanding of customer needs in the market, Sandile has developed a sustainable and customer-focused business model that serves households, tuckshops, and businesses alike.
+            </p>
+        </div>
+    </section>
+
+    <div class="container">
+        <section id="contact" class="cta-section">
+            <h2>Partner With Us</h2>
+            <p style="font-size: 1.2rem; margin-top: 1rem;">
+                Join us in our mission to provide quality products and empower communities across South Africa.
+            </p>
+            <a href="#" class="cta-button">Get In Touch</a>
+        </section>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Zhaka Enterprise. All rights reserved.</p>
+        <p>Embalenhle, South Africa | Est. October 29, 2025</p>
+    </footer>
+</body>
+</html>
