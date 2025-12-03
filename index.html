@@ -1,0 +1,17 @@
+# 1. Create index.html file (copy the HTML code from the artifact and save it)
+# You can use notepad:
+notepad index.html
+# Then paste the HTML code and save
+
+# 2. Add the file to git
+git add index.html
+
+# 3. Commit the file
+git commit -m "Add Zhaka Enterprise website"
+
+# 4. Remove old remote and add new one
+git remote remove origin
+git remote add origin https://github.com/Nodino5/zhaka-enterprise.git
+
+# 5. Push to GitHub
+git push -u origin main
