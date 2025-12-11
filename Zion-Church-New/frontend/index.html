@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zion Apostolic Swaziland Church of South Africa</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-blue: #2c5fa5;
+            --secondary-blue: #1e4a8a;
+            --accent-gold: #d4af37;
+            --white: #ffffff;
+            --dark: #333333;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            text-align: center;
+            border: 5px solid var(--accent-gold);
+        }
+        
+        .church-name {
+            color: var(--primary-blue);
+            font-size: 2.8rem;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+        
+        .npo-number {
+            color: var(--secondary-blue);
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+        
+        .motto {
+            color: var(--accent-gold);
+            font-size: 1.4rem;
+            font-style: italic;
+            margin-bottom: 30px;
+            font-weight: 500;
+        }
+        
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+        
+        .card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease;
+            border-top: 4px solid var(--accent-gold);
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .card h3 {
+            color: var(--primary-blue);
+            margin-bottom: 15px;
+            font-size: 1.4rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .card h3 i {
+            color: var(--accent-gold);
+        }
+        
+        .btn {
+            background: var(--accent-gold);
+            color: var(--dark);
+            border: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin: 5px;
+        }
+        
+        .btn:hover {
+            background: #c19b2e;
+            transform: scale(1.05);
+        }
+        
+        .btn-primary {
+            background: var(--primary-blue);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background: var(--secondary-blue);
+        }
+        
+        .status-box {
+            padding: 15px;
+            border-radius: 10px;
+            margin: 15px 0;
+            font-weight: 500;
+        }
+        
+        .status-success {
+            background: #d4edda;
+            color: #155724;
+            border-left: 4px solid #28a745;
+        }
+        
+        .status-error {
+            background: #f8d7da;
+            color: #721c24;
+            border-left: 4px solid #dc3545;
+        }
+        
+        .status-info {
+            background: #d1ecf1;
+            color: #0c5460;
+            border-left: 4px solid #17a2b8;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--secondary-blue);
+        }
+        
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e1e5e9;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.3s ease;
+        }
+        
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            border-color: var(--primary-blue);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(44, 95, 165, 0.1);
+        }
+        
+        .results {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 20px;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px;
+            color: white;
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+        
+        .contact-info {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 15px;
+            color: white;
+        }
+        
+        @media (max-width: 768px) {
+            .church-name {
+                font-size: 2rem;
+            }
+            
+            .container {
+                padding: 10px;
+            }
+            
+            .header {
+                padding: 25px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- HEADER -->
+        <div class="header">
+            <h1 class="church-name">
+                <i class="fas fa-church"></i>
+                Zion Apostolic Swaziland Church of South Africa
+            </h1>
+            <div class="npo-number">NPO Reg. No: 2023/757388/08</div>
+            <div class="motto">"Building Faith, Unity, and the Future of Our Youth"</div>
+            
+            <div class="contact-info">
+                <p><i class="fas fa-phone"></i> Youth President: Mr. S. Shongwe - 072 276 7670</p>
+                <p><i class="fas fa-map-marker-alt"></i> Operating across all 9 provinces of South Africa</p>
+            </div>
+            
+            <div style="margin-top: 20px;">
+                <button class="btn" onclick="testAPI()">
+                    <i class="fas fa-wifi"></i> Test API Connection
+                </button>
+                <button class="btn btn-primary" onclick="showChurchInfo()">
+                    <i class="fas fa-info-circle"></i> Church Information
+                </button>
+            </div>
+            
+            <div id="api-status" class="status-box"></div>
+        </div>
+        
+        <!-- DASHBOARD -->
+        <div class="dashboard-grid">
+            <!-- System Health -->
+            <div class="card">
+                <h3><i class="fas fa-heartbeat"></i> System Health</h3>
+                <p>Check the status of all church systems</p>
+                <button class="btn" onclick="checkSystemHealth()">
+                    <i class="fas fa-stethoscope"></i> Run Health Check
+                </button>
+                <div id="health-results"></div>
+            </div>
+            
+            <!-- Membership Registration -->
+            <div class="card">
+                <h3><i class="fas fa-user-plus"></i> Membership Registration</h3>
+                <p>Join Zion Apostolic Swaziland Church</p>
+                <p><strong>Annual Fee: R100.00</strong></p>
+                <button class="btn btn-primary" onclick="showRegistrationForm()">
+                    <i class="fas fa-edit"></i> Register Now
+                </button>
+                <div id="registration-form" style="display: none; margin-top: 20px;">
+                    <form id="memberForm">
+                        <div class="form-group">
+                            <label>First Name *</label>
+                            <input type="text" id="firstName" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Last Name *</label>
+                            <input type="text" id="lastName" required>
+                        </div>
+                        <div class="form-group">
+                            <label>ID Number *</label>
+                            <input type="text" id="idNumber" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Email *</label>
+                            <input type="email" id="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Phone *</label>
+                            <input type="tel" id="phone" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Province *</label>
+                            <select id="province" required>
+                                <option value="">Select Province</option>
+                                <option value="EC">Eastern Cape</option>
+                                <option value="FS">Free State</option>
+                                <option value="GP">Gauteng</option>
+                                <option value="KZN">KwaZulu-Natal</option>
+                                <option value="LP">Limpopo</option>
+                                <option value="MP">Mpumalanga</option>
+                                <option value="NW">North West</option>
+                                <option value="NC">Northern Cape</option>
+                                <option value="WC">Western Cape</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-check"></i> Submit Registration
+                        </button>
+                    </form>
+                    <div id="registration-result"></div>
+                </div>
+            </div>
+            
+            <!-- Church Branches -->
+            <div class="card">
+                <h3><i class="fas fa-map-marked-alt"></i> Church Branches</h3>
+                <p>Find branches across 9 provinces</p>
+                <button class="btn" onclick="loadBranches()">
+                    <i class="fas fa-search"></i> Find Branches
+                </button>
+                <div id="branches-list"></div>
+            </div>
+            
+            <!-- Youth Foundation -->
+            <div class="card">
+                <h3><i class="fas fa-users"></i> Youth Foundation</h3>
+                <p>Programs and activities for youth</p>
+                <button class="btn" onclick="loadYouthPrograms()">
+                    <i class="fas fa-calendar-alt"></i> View Programs
+                </button>
+                <div id="youth-programs"></div>
+            </div>
+            
+            <!-- Constitution -->
+            <div class="card">
+                <h3><i class="fas fa-book"></i> Church Constitution</h3>
+                <p>Rules and leadership structure</p>
+                <button class="btn" onclick="loadConstitution()">
+                    <i class="fas fa-scroll"></i> View Summary
+                </button>
+                <div id="constitution-info"></div>
+            </div>
+            
+            <!-- Uniform Standards -->
+            <div class="card">
+                <h3><i class="fas fa-tshirt"></i> Uniform Standards</h3>
+                <p>Church uniform requirements</p>
+                <button class="btn" onclick="loadUniforms()">
+                    <i class="fas fa-vest"></i> View Uniforms
+                </button>
+                <div id="uniform-standards"></div>
+            </div>
+        </div>
+        
+        <!-- TEST RESULTS -->
+        <div class="card" style="margin-top: 30px;">
+            <h3><i class="fas fa-vial"></i> API Testing</h3>
+            <button class="btn" onclick="testAllEndpoints()">
+                <i class="fas fa-play"></i> Test All Endpoints
+            </button>
+            <div id="test-results" class="results"></div>
+        </div>
+        
+        <!-- FOOTER -->
+        <div class="footer">
+            <p>Zion Apostolic Swaziland Church of South Africa © 2025</p>
+            <p>Official Digital Ecosystem | Version 4.0</p>
+            <p>Powered by Flask & React Native | NPO: 2023/757388/08</p>
+        </div>
+    </div>
+    
+    <script>
+        const API_BASE = 'http://localhost:5000/api';
+        
+        // Test basic API connection
+        async function testAPI() {
+            const statusDiv = document.getElementById('api-status');
+            statusDiv.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Testing connection...';
+            statusDiv.className = 'status-box status-info';
+            
+            try {
+                const response = await fetch(`${API_BASE}/health`);
+                const data = await response.json();
+                
+                if (response.ok) {
+                    statusDiv.innerHTML = `
+                        <i class="fas fa-check-circle"></i> 
+                        <strong>Connected to Zion Apostolic Swaziland Church API</strong><br>
+                        <small>Church: ${data.church}</small><br>
+                        <small>Members: ${data.statistics.total_members} | Branches: ${data.statistics.total_branches}</small>
+                    `;
+                    statusDiv.className = 'status-box status-success';
+                } else {
+                    statusDiv.innerHTML = `<i class="fas fa-times-circle"></i> API Error: ${response.status}`;
+                    statusDiv.className = 'status-box status-error';
+                }
+            } catch (error) {
+                statusDiv.innerHTML = `<i class="fas fa-times-circle"></i> Connection Failed: ${error.message}`;
+                statusDiv.className = 'status-box status-error';
+            }
+        }
+        
+        // Show church information
+        async function showChurchInfo() {
+            try {
+                const response = await fetch(`${API_BASE}/church/info`);
+                const data = await response.json();
+                
+                const results = document.getElementById('test-results');
+                results.innerHTML = `
+                    <h4>Church Information</h4>
+                    <div style="background: #f8f9fa; padding: 15px; border-radius: 8px;">
+                        <p><strong>Name:</strong> ${data.church.name}</p>
+                        <p><strong>NPO Number:</strong> ${data.church.npo_number}</p>
+                        <p><strong>Motto:</strong> ${data.church.motto}</p>
+                        <p><strong>Contact:</strong> ${data.church.contact || '072 276 7670'}</p>
+                        <p><strong>Branches:</strong> ${data.statistics.total_branches} across 9 provinces</p>
+                    </div>
+                `;
+            } catch (error) {
+                document.getElementById('test-results').innerHTML = 
+                    `<p class="status-error">Error: ${error.message}</p>`;
+            }
+        }
+        
+        // Load branches
+        async function loadBranches() {
+            const container = document.getElementById('branches-list');
+            container.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Loading branches...';
+            
+            try {
+                const response = await fetch(`${API_BASE}/church/branches`);
+                const data = await response.json();
+                
+                if (data.branches.length > 0) {
+                    let html = '<div style="margin-top: 10px;">';
+                    data.branches.forEach(branch => {
+                        html += `
+                            <div style="padding: 10px; border-bottom: 1px solid #eee;">
+                                <strong>${branch.branch_name}</strong><br>
+                                <small>${branch.city}, ${branch.province}</small>
+                            </div>
+                        `;
+                    });
+                    html += '</div>';
+                    container.innerHTML = html;
+                } else {
+                    container.innerHTML = '<p>No branches found</p>';
+                }
+            } catch (error) {
+                container.innerHTML = `<p class="status-error">Error: ${error.message}</p>`;
+            }
+        }
+        
+        // Load youth programs
+        async function loadYouthPrograms() {
+            const container = document.getElementById('youth-programs');
+            container.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Loading programs...';
+            
+            try {
+                const response = await fetch(`${API_BASE}/church/youth-programs`);
+                const data = await response.json();
+                
+                if (data.programs.length > 0) {
+                    let html = '<div style="margin-top: 10px;">';
+                    data.programs.forEach(program => {
+                        html += `
+                            <div style="padding: 10px; border-bottom: 1px solid #eee;">
+                                <strong>${program.program_name}</strong><br>
+                                <small>Type: ${program.program_type} | Date: ${program.start_date}</small><br>
+                                <small>Budget: R${program.budget} | Coordinator: ${program.coordinator}</small>
+                            </div>
+                        `;
+                    });
+                    html += '</div>';
+                    container.innerHTML = html;
+                } else {
+                    container.innerHTML = '<p>No programs found</p>';
+                }
+            } catch (error) {
+                container.innerHTML = `<p class="status-error">Error: ${error.message}</p>`;
+            }
+        }
+        
+        // Load constitution
+        async function loadConstitution() {
+            const container = document.getElementById('constitution-info');
+            container.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Loading constitution...';
+            
+            try {
+                const response = await fetch(`${API_BASE}/constitution/summary`);
+                const data = await response.json();
+                
+                let html = '<div style="margin-top: 10px;">';
+                html += `<p><strong>Leadership Structure:</strong></p><ul>`;
+                data.leadership_structure.forEach(item => {
+                    html += `<li>${item}</li>`;
+                });
+                html += `</ul>`;
+                
+                html += `<p><strong>Key Rules:</strong></p><ul>`;
+                data.key_rules.forEach(rule => {
+                    html += `<li>${rule}</li>`;
+                });
+                html += `</ul>`;
+                
+                html += `<p><strong>Youth Foundation:</strong> ${data.youth_foundation.purpose}</p>`;
+                html += `<p><strong>Contact:</strong> ${data.youth_foundation.contact}</p>`;
+                
+                container.innerHTML = html;
+            } catch (error) {
+                container.innerHTML = `<p class="status-error">Error: ${error.message}</p>`;
+            }
+        }
+        
+        // Load uniforms
+        async function loadUniforms() {
+            const container = document.getElementById('uniform-standards');
+            container.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Loading uniform standards...';
+            
+            try {
+                const response = await fetch(`${API_BASE}/church/uniforms`);
+                const data = await response.json();
+                
+                if (data.uniforms.length > 0) {
+                    let html = '<div style="margin-top: 10px;">';
+                    data.uniforms.forEach(uniform => {
+                        html += `
+                            <div style="padding: 10px; border-bottom: 1px solid #eee;">
+                                <strong>${uniform.uniform_type.replace('_', ' ').toUpperCase()}</strong><br>
+                                <small>${uniform.description}</small><br>
+                                <small><strong>Items:</strong> ${uniform.items}</small><br>
+                                <small><strong>Colors:</strong> ${uniform.approved_colors}</small>
+                            </div>
+                        `;
+                    });
+                    html += '</div>';
+                    container.innerHTML = html;
+                } else {
+                    container.innerHTML = '<p>No uniform standards found</p>';
+                }
+            } catch (error) {
+                container.innerHTML = `<p class="status-error">Error: ${error.message}</p>`;
+            }
+        }
+        
+        // Show registration form
+        function showRegistrationForm() {
+            document.getElementById('registration-form').style.display = 'block';
+        }
+        
+        // Handle registration form
+        document.getElementById('memberForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const resultDiv = document.getElementById('registration-result');
+            resultDiv.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing registration...';
+            resultDiv.className = 'status-box status-info';
+            
+            const formData = {
+                firstName: document.getElementById('firstName').value,
+                lastName: document.getElementById('lastName').value,
+                idNumber: document.getElementById('idNumber').value,
+                email: document.getElementById('email').value,
+                phone: document.getElementById('phone').value,
+                province: document.getElementById('province').value,
+                dateOfBirth: '1990-01-01', // Should add date picker
+                gender: 'male', // Should add gender select
+                branch: `Zion Apostolic Swaziland Church - ${document.getElementById('province').options[document.getElementById('province').selectedIndex].text}`
+            };
+            
+            try {
+                const response = await fetch(`${API_BASE}/members/register`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(formData)
+                });
+                
+                const data = await response.json();
+                
+                if (response.ok) {
+                    resultDiv.innerHTML = `
+                        <i class="fas fa-check-circle"></i> 
+                        <strong>Registration Successful!</strong><br>
+                        <small>Membership Number: ${data.data.membershipNumber}</small><br>
+                        <small>Referral Code: ${data.data.referralCode}</small><br>
+                        <small>Annual Fee: R${data.data.annualFee}</small><br>
+                        <small>Status: ${data.data.status}</small>
+                    `;
+                    resultDiv.className = 'status-box status-success';
+                    
+                    // Clear form
+                    document.getElementById('memberForm').reset();
+                } else {
+                    resultDiv.innerHTML = `<i class="fas fa-times-circle"></i> Error: ${data.error}`;
+                    resultDiv.className = 'status-box status-error';
+                }
+            } catch (error) {
+                resultDiv.innerHTML = `<i class="fas fa-times-circle"></i> Network Error: ${error.message}`;
+                resultDiv.className = 'status-box status-error';
+            }
+        });
+        
+        // Test all endpoints
+        async function testAllEndpoints() {
+            const results = document.getElementById('test-results');
+            results.innerHTML = '<h4>Testing all endpoints...</h4>';
+            
+            const endpoints = [
+                { name: 'Health Check', url: '/health' },
+                { name: 'Church Info', url: '/church/info' },
+                { name: 'Branches', url: '/church/branches' },
+                { name: 'Youth Programs', url: '/church/youth-programs' },
+                { name: 'Uniforms', url: '/church/uniforms' },
+                { name: 'Constitution', url: '/constitution/summary' }
+            ];
+            
+            for (const endpoint of endpoints) {
+                try {
+                    const response = await fetch(API_BASE + endpoint.url);
+                    const success = response.ok;
+                    
+                    results.innerHTML += `
+                        <div style="padding: 10px; margin: 5px 0; background: ${success ? '#d4edda' : '#f8d7da'}; border-radius: 5px;">
+                            ${success ? '✅' : '❌'} ${endpoint.name}: ${response.status}
+                        </div>
+                    `;
+                } catch (error) {
+                    results.innerHTML += `
+                        <div style="padding: 10px; margin: 5px 0; background: #f8d7da; border-radius: 5px;">
+                            ❌ ${endpoint.name}: Failed - ${error.message}
+                        </div>
+                    `;
+                }
+            }
+        }
+        
+        // Check system health
+        async function checkSystemHealth() {
+            const container = document.getElementById('health-results');
+            container.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Checking system health...';
+            
+            try {
+                const response = await fetch(`${API_BASE}/health`);
+                const data = await response.json();
+                
+                container.innerHTML = `
+                    <div style="margin-top: 10px; padding: 15px; background: #e8f4fd; border-radius: 8px;">
+                        <p><strong>Status:</strong> ${data.status.toUpperCase()}</p>
+                        <p><strong>Version:</strong> ${data.version}</p>
+                        <p><strong>Church:</strong> ${data.church}</p>
+                        <p><strong>NPO:</strong> ${data.npo_number}</p>
+                        <p><strong>Members:</strong> ${data.statistics.total_members}</p>
+                        <p><strong>Branches:</strong> ${data.statistics.total_branches}</p>
+                    </div>
+                `;
+            } catch (error) {
+                container.innerHTML = `<p class="status-error">Health check failed: ${error.message}</p>`;
+            }
+        }
+        
+        // Initialize on load
+        window.onload = function() {
+            testAPI();
+            checkSystemHealth();
+        };
+    </script>
+</body>
+</html>
